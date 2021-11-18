@@ -10,9 +10,11 @@ const Navbar = () => {
 
   return (
     <Nav>
-      <h2>
-        <Link to="/">Logo</Link>
-      </h2>
+      <div>
+        <Link to="/">
+          <h2>TRCKR</h2>
+        </Link>
+      </div>
 
       <List>
         {!user ? (
@@ -47,7 +49,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 20px;
   height: 50px;
   background: #e1e1e1;
 
