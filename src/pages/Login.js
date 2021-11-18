@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useLogin } from '../hooks/useLogin';
 
+// UI imports
+import Button from '../components/UI/Button';
+import Form from '../components/UI/Form';
+import Divider from '../components/UI/Divider';
+import Input from '../components/UI/Input';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,35 +20,38 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <h2>Login</h2>
 
-        <label>
-          <span>Email: </span>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
+        <Input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          icon={<i className="fas fa-at"></i>}
+          required
+        />
 
-        <label>
-          <span>Password: </span>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+        <Input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          icon={<i className="fas fa-key"></i>}
+          required
+        />
 
-        <button type="submit" disabled={loading}>
+        <Divider />
+
+        <Button type="submit" disabled={loading}>
           {loading ? 'Loading..' : 'Login'}
-        </button>
-      </form>
+        </Button>
+        {error && (
+          <small>
+            <Divider />
+            {error}
+          </small>
+        )}
+      </Form>
       <br />
-      {error && <p>{error}</p>}
     </div>
   );
 };

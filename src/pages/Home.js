@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TransactionForm from '../components/TransactionForm';
 import TransactionList from '../components/TransactionList';
+import Divider from '../components/UI/Divider';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useCollection } from '../hooks/useCollection';
 
@@ -13,19 +14,21 @@ const Home = () => {
   const { documents, error } = useCollection('transactions', query, orderBy);
 
   return (
-    <>
-      <h1>Transactions</h1>
-      <Container>
-        <div>Transactions list</div>
-        <div>
-          {error && <p>{error}</p>}
-          {documents && <TransactionList transactions={documents} />}
-        </div>
-        <div>
-          <TransactionForm uid={user.uid} />
-        </div>
-      </Container>
-    </>
+    <Container>
+      <div>
+        <TransactionForm uid={user.uid} />
+      </div>
+
+      <div>
+        {error && (
+          <small>
+            <Divider />
+            {error}
+          </small>
+        )}
+        {documents && <TransactionList transactions={documents} />}
+      </div>
+    </Container>
   );
 };
 
