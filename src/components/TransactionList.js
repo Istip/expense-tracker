@@ -15,7 +15,10 @@ const TransactionList = ({ transactions }) => {
           <ListDescription>
             <h3>{transaction.name}</h3>
             <p>
-              <b>{transaction.ammount}</b> LEI
+              <ListAmmount isExpense={transaction.ammount < 0}>
+                {transaction.ammount}
+              </ListAmmount>{' '}
+              LEI
             </p>
           </ListDescription>
 
@@ -35,6 +38,10 @@ const TransactionList = ({ transactions }) => {
 const List = styled.ul`
   margin: 20px;
   padding: 0;
+`;
+
+const ListAmmount = styled.b`
+  color: ${(props) => (props.isExpense ? '#ff3030' : '#61b061')};
 `;
 
 const ListItem = styled.li`
